@@ -1,7 +1,4 @@
-
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import BasePage
 from locators import OrderPageLocator
 
@@ -53,16 +50,16 @@ class OrderPage(BasePage):
         return self.find_element(OrderPageLocator.ACCEPT_ORDER_BUTTON).click()
 
     @allure.step('Заполнить форму "Для кого самокат"')
-    def fill_form_whom(self, set: dict):
-        self.input_name(set['name'])
-        self.input_last_name(set['surname'])
-        self.input_address(set['address'])
-        self.choose_metro(set['metro_station'])
-        self.input_phone_number(set['phone_number'])
+    def fill_form_whom(self, set_user: dict):
+        self.input_name(set_user['name'])
+        self.input_last_name(set_user['surname'])
+        self.input_address(set_user['address'])
+        self.choose_metro(set_user['metro_station'])
+        self.input_phone_number(set_user['phone_number'])
 
     @allure.step('Заполнить форму "Про аренду"')
-    def fill_form_about_rent(self, set: dict):
-        self.input_date(set['date'])
-        self.choose_rental_period(set['rental_period'])
-        for option in set['color']:
+    def fill_form_about_rent(self, set_user: dict):
+        self.input_date(set_user['date'])
+        self.choose_rental_period(set_user['rental_period'])
+        for option in set_user['color']:
             self.choose_color(option)

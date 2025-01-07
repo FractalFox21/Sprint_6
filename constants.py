@@ -2,9 +2,7 @@
 class Constants:
     URL_HOME_PAGE = 'https://qa-scooter.praktikum-services.ru/'
     URL_ORDER_PAGE = f'{URL_HOME_PAGE}order'
-
-    DZEN_MAIN_PAGE = 'https://dzen.ru/'
-    YANDEX_CAPTCHA_PAGE = 'yandex.ru'
+    URL_DZEN_PAGE = 'dzen.ru'
 
 
 class ExpectedAnswer:
@@ -18,7 +16,7 @@ class ExpectedAnswer:
     answer_8 = 'Да, обязательно. Всем самокатов! И Москве, и Московской области.'
 
 class SetUser:
-    set = {
+    set_user = {
         'user_1': {
             'name': 'Иван',
             'surname': 'Иванов',
