@@ -1,25 +1,38 @@
 from selenium.webdriver.common.by import By
 
+class BasePageLocators:
+    YANDEX_LOGO = (By.XPATH, ".//img[@alt='Yandex']")
+    SCOOTER_LOGO = (By.XPATH, ".//img[@alt='Scooter']")
+    COOKIE_ACCEPT_BUTTON = (By.XPATH, ".//button[@id='rcc-confirm-button']")
 
-class HomePageLocators():
-    TOP_ORDER_BUTTON = (By.CSS_SELECTOR, "button.Order_Button__1Lkhg")
-    ORDER_BUTTON_IN_MANUAL = (By.CSS_SELECTOR, "div.Home_FinishButton__1_cWm > button")
+class HomePageLocators:
+    HEADER_ORDER_BUTTON = (By.XPATH, ".//div[starts-with(@class,'Header')]/button[text()='Заказать']")
+    BOTTOM_ORDER_BUTTON = (By.XPATH, ".//div[starts-with(@class,'Home')]/button[text()='Заказать']")
+    FAQ_BUTTON = (By.XPATH, ".//div[@class='accordion__button']")
+    FAQ_ANSWER = (By.CSS_SELECTOR, ".accordion__panel > p")
 
+    @staticmethod
+    def FAQ_ANSWER(answer_number):
+        return [By.XPATH, f'.//div[@class="accordion__panel" and @id="accordion__panel-{answer_number}"]/p']
 
-    QUESTIONS_BLOCK = (By.XPATH, "//div[contains(text(),'Вопросы о важном')]")
-    Q_HOW_MUCH = (By.XPATH, "//div[@id='accordion__panel-8']")
-    ANS_HOW_MUCH = (By.XPATH, "//p[contains(text(),'Сутки — 400 рублей. Оплата курьеру')]")
-    Q_SOME_SCOOTERS = (By.XPATH, "//div[@id='accordion__heading-9']")
-    ANS_SOME_SCOOTERS = (By.XPATH, "//p[contains(text(),'Пока что у нас так: один заказ — один самокат.')]")
-    Q_RENTAL_TIME = (By.XPATH, "//div[@id='accordion__heading-10']")
-    ANS__RENTAL_TIME = (By.XPATH, "//p[contains(text(),'Допустим, вы оформляете заказ на 8 мая.')]")
-    Q_SCOOTER_TODAY = (By.XPATH, "//div[@id='accordion__heading-11']")
-    ANS_SCOOTER_TODAY = (By.XPATH, "//p[contains(text(),'Только начиная с завтрашнего дня.')]")
-    Q_EXTEND_TIME = (By.XPATH, "//div[@id='accordion__heading-12']")
-    ANS_EXTEND_TIME = (By.XPATH, "//p[contains(text(),'Пока что нет! Но если что-то срочное')]")
-    Q_CHARGING = (By.XPATH, "//div[@id='accordion__heading-13']")
-    ANS_CHARGING = (By.XPATH, "//p[contains(text(),'Самокат приезжает к вам с полной зарядкой.')]")
-    Q_CANCEL_ORDER = (By.XPATH, "//div[@id='accordion__heading-14']")
-    ANS_CANCEL_ORDER = (By.XPATH, "//p[contains(text(),'Да, пока самокат не привезли.')]")
-    Q_OUTSIDE_MCAD = (By.XPATH, "//div[@id='accordion__heading-15']")
-    ANS_OUTSIDE_MCAD = (By.XPATH, "//p[contains(text(),'Да, обязательно. Всем самокатов!')]")
+class OrderPageLocator:
+    NAME_INPUT = (By.XPATH, ".//input[contains(@placeholder,'Имя')]")
+    LAST_NAME_INPUT = (By.XPATH, ".//input[contains(@placeholder,'Фамилия')]")
+    ADDRESS_INPUT = (By.XPATH, ".//input[contains(@placeholder,'Адрес')]")
+    METRO_STATION_INPUT = (By.XPATH, ".//input[contains(@placeholder,'Станция метро')]")
+    PHONE_NUMBER_INPUT = (By.XPATH, ".//input[contains(@placeholder,'Телефон')]")
+    NEXT_BUTTON = (By.XPATH, ".//button[contains(text(),'Далее')]")
+    DATE_INPUT = (By.XPATH, ".//input[contains(@placeholder,'Когда')]")
+    RENTAL_PERIOD_INPUT = (By.XPATH, ".//span[@class='Dropdown-arrow']")
+    RENTAL_PERIOD_LIST = (By.XPATH, ".//div[@class='Dropdown-menu']")
+    COLOR_INPUT = (By.XPATH, ".//div[contains(text(),'Цвет')]/parent::div//input")
+    MIDDLE_ORDER_BUTTON = (By.XPATH, ".//div[starts-with(@class, 'Order')]/button[text()='Заказать']")
+    ACCEPT_ORDER_BUTTON = [By.XPATH, ".//button[text()='Да']"]
+    ORDER_NUMBER = [By.XPATH, ".//div[contains(text(),'Номер заказа')]"]
+    ORDER_STATUS = [By.XPATH, ".//div[contains(@class, 'Order_ModalHeader')]"]
+    VIEW_STATUS_BUTTON = [By.XPATH, ".//button[text()='Посмотреть статус']"]
+
+    @staticmethod
+    def METRO_SELECTION(metro_station):
+        return [By.XPATH, f".//div[text()='{metro_station}']/parent::button"]
+

@@ -1,30 +1,20 @@
-import locators
+import allure
+from pages.base_page import BasePage
+from locators import HomePageLocators
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
+class HomePage(BasePage):
 
-class HomePage():
-    def __init__(self, driver):
-        self.driver = driver
-        self.url = 'https://qa-scooter.praktikum-services.ru/'
+    @allure.step('Нажать кнопку "Заказать" в верхней части страницы')
+    def click_header_order_button(self):
+        return self.find_element(HomePageLocators.HEADER_ORDER_BUTTON).click()
 
-    def go_to_site(self):
-        self.driver.get(self.url)
+    @allure.step('Нажать кнопку "Заказать" в нижней части страницы')
+    def click_bottom_order_button(self):
+        return self.find_element(HomePageLocators.BOTTOM_ORDER_BUTTON).click()
 
-    @pytest.mark.parametrize(
-        'question, answer',[
-        ['Q_HOW_MUCH', 'ANS_HOW_MUCH'],
-        ['Q_SOME_SCOOTERS' , 'ANS_SOME_SCOOTERS'],
-        ['Q_RENTAL_TIME', 'ANS__RENTAL_TIME'],
-        ['Q_SCOOTER_TODAY' , 'ANS_SCOOTER_TODAY'],
-        ['Q_EXTEND_TIME', 'ANS_EXTEND_TIME'],
-        ['Q_CHARGING', 'ANS_CHARGING'],
-        ['Q_CANCEL_ORDER', 'ANS_CANCEL_ORDER'],
-        ['Q_OUTSIDE_MCAD', 'ANS_OUTSIDE_MCAD']
-        ])
-
-    def find_question_block(self, question, answer):
-        self.driver.find_element(locators.HomePageLocators.QUESTIONS_BLOCK)
-        self.driver.find_element(question).click()
-
-
-
-
+    @allure.step('Нажать на вопрос')
+    def click_faq_question(self, question_number):
+        elem = self.find_elements(HomePageLocators.FAQ_BUTTON)
+        return elem[question_number].click()
