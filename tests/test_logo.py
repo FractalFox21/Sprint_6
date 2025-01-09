@@ -43,5 +43,5 @@ class TestHomePage:
         home_page = HomePage(driver)
         home_page.go_to_site(Constants.URL_ORDER_PAGE)
         home_page.click_scooter_logo()
-        current_url = driver.current_url
+        current_url = home_page.current_url()
         assert Constants.URL_HOME_PAGE in current_url
